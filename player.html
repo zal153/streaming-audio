@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radio ILM Sumenep</title>
 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="bg-light">
@@ -26,88 +27,39 @@
             <div class="p-3 text-center">
                 <audio id="audioPlayer">
                     <source src="http://cc112sumenep.com:8000/ilm?type=.mp3" type="audio/mp3">
-                    Browser Anda tidak mendukung audio element.
+                    Browser Anda tidak mendukung elemen audio.
                 </audio>
-                <p class="mt-2">Judul: <span id="songTitle">Tidak Diketahui</span> | Artis: <span id="artistName">Tidak
+                <p class="mt-2 mb-0">Judul: <span id="songTitle">Tidak Diketahui</span> | Artis: <span
+                        id="artistName">Tidak
                         Diketahui</span></p>
+                <p><span id="elapsedTime">00:00</span></p>
             </div>
             <div class="list-group list-group-flush text-dark">
                 <div class="list-group-item">Lagu Berikutnya:</div>
-                <div id="playlist" class="list-group-item">Loading...</div>
+                <div id="playlist" class="list-group-item">
+                    <ul id="nextSongs">
+                        <li>Tidak ada informasi</li>
+                    </ul>
+                </div>
             </div>
             <div class="card-footer bg-danger text-center py-3">
                 <button class="btn btn-outline-light" id="prevButton"><i class="fa fa-backward"></i></button>
                 <button class="btn btn-outline-light" id="playPauseButton"><i class="fa fa-play"></i></button>
                 <button class="btn btn-outline-light" id="nextButton"><i class="fa fa-forward"></i></button>
-                <button class="btn btn-outline-light"><i class="fa fa-search"></i></button>
                 <button class="btn btn-outline-light" id="togglePlaylist"><i class="fa fa-list"></i></button>
+                <button class="btn btn-outline-light" id="toggleMode"><i class="fas fa-moon"></i></button>
             </div>
         </div>
+
     </div>
 
     <footer class="bg-dark text-white text-center py-3">
         <p class="mb-0">&copy; <span id="currentYear"></span> Radio ILM Sumenep. Hak Cipta Dilindungi.</p>
     </footer>
 
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-        document.getElementById("currentDateTime").textContent = new Date().toLocaleString("id-ID");
-
-        const audioPlayer = document.getElementById("audioPlayer");
-        const playPauseButton = document.getElementById("playPauseButton");
-        const togglePlaylist = document.getElementById("togglePlaylist");
-        const playlist = document.getElementById("playlist");
-
-        playPauseButton.addEventListener("click", function () {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-                playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
-            } else {
-                audioPlayer.pause();
-                playPauseButton.innerHTML = '<i class="fa fa-play"></i>';
-            }
-        });
-
-        togglePlaylist.addEventListener("click", function () {
-            if (playlist.style.display === "none" || playlist.style.display === "") {
-                playlist.style.display = "block";
-            } else {
-                playlist.style.display = "none";
-            }
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            function updateSong() {
-                $.getJSON("http://localhost:5000/current-song", function (data) {
-                    console.log("Data diterima:", data);
-                    $("#songTitle").text(data.song || "Tidak ada lagu yang sedang diputar");
-                    $("#artistName").text(data.artist || "Tidak diketahui");
-                }).fail(function () {
-                    $("#songTitle").text("Gagal mengambil informasi lagu");
-                    $("#artistName").text("");
-                });
-            }
-
-            updateSong();
-            setInterval(updateSong, 5000);
-
-            const savedMode = localStorage.getItem("darkMode");
-            if (savedMode === "on") {
-                $("body").addClass("dark-mode");
-                $("#toggleMode").html('<i class="fas fa-sun"></i>');
-            }
-
-            $("#toggleMode").click(function () {
-                $("body").toggleClass("dark-mode");
-                let isDark = $("body").hasClass("dark-mode");
-                localStorage.setItem("darkMode", isDark ? "on" : "off");
-                $("#toggleMode").html(isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>');
-            });
-        });
-    </script>
+    <script src="assets/js/script.js"></script>
 
 </body>
 

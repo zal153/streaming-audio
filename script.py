@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-def get_current_song():
+def get_metadata():
     url = "http://cc112sumenep.com:8000/ilm"
     headers = {"Icy-MetaData": "1"}
 
@@ -26,9 +26,23 @@ def get_current_song():
 
     return {"song": "Tidak ada lagu yang sedang diputar", "artist": "Tidak diketahui"}
 
+def get_next_songs():
+    # Fungsi ini perlu diimplementasikan berdasarkan metadata yang tersedia
+    # Jika metadata berisi informasi tentang lagu berikutnya
+    next_songs = [
+        {"song": "Lagu Berikutnya A", "artist": "Artis A"},
+        {"song": "Lagu Berikutnya B", "artist": "Artis B"},
+        {"song": "Lagu Berikutnya C", "artist": "Artis C"}
+    ]
+    return next_songs
+
 @app.route('/current-song', methods=['GET'])
 def current_song():
-    return jsonify(get_current_song())
+    return jsonify(get_metadata())
+
+@app.route('/playlist', methods=['GET'])
+def playlist():
+    return jsonify(get_next_songs())
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
