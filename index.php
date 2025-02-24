@@ -30,7 +30,7 @@ $isRadioOnline = checkRadioStatus($config['radio_url']);
                 background: rgba(255, 0, 0, 0.1);
                 color: #ff4444;
                 padding: 10px;
-                border-radius: 5px;
+                border-radius: 40px;
                 margin-bottom: 20px;
                 text-align: center;
             }
@@ -39,12 +39,12 @@ $isRadioOnline = checkRadioStatus($config['radio_url']);
 </head>
 
 <body>
+    <?php if (!$isRadioOnline): ?>
+        <div class="offline-notice">
+            Radio stream is currently offline. Please try again later.
+        </div>
+    <?php endif; ?>
     <div class="container">
-        <?php if (!$isRadioOnline): ?>
-            <div class="offline-notice">
-                Radio stream is currently offline. Please try again later.
-            </div>
-        <?php endif; ?>
 
         <div class="main-content">
             <nav>
@@ -108,7 +108,6 @@ $isRadioOnline = checkRadioStatus($config['radio_url']);
     </div>
 
     <script>
-        // Menyimpan status radio untuk JavaScript
         window.radioConfig = {
             isOnline: <?php echo json_encode($isRadioOnline); ?>,
             streamUrl: <?php echo json_encode($config['radio_url']); ?>
