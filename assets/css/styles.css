@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #4b0082, #800080);
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* Agar elemen turun ke bawah jika layar kecil */
+  gap: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Bagian utama */
+.main-content {
+  flex: 1; /* Mengisi ruang yang tersedia */
+  min-width: 0;
+  padding: 20px;
+}
+
+/* Sidebar / Playlist */
+.playlist {
+  flex: 0 0 300px; /* Sidebar memiliki lebar tetap */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* Navbar tetap menggunakan Flexbox */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #666;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  opacity: 1;
+}
+
+#currentDateTime {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.description {
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+/* Player Card */
+.player-card {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  padding: 60px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#songImage {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.song-info {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Controls menggunakan Flexbox */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+/* Playlist Item */
+.playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: background 0.3s;
+}
+
+.playlist-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-cover {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.playlist-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.artist-name {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Responsivitas */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .playlist {
+    flex: 1; /* Mengisi seluruh lebar */
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
