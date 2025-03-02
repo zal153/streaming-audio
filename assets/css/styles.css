@@ -16,25 +16,56 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap; /* Agar elemen turun ke bawah jika layar kecil */
+  flex-wrap: wrap;
   gap: 30px;
   justify-content: space-between;
-  align-items: flex-start;
 }
 
 /* Bagian utama */
 .main-content {
-  flex: 1; /* Mengisi ruang yang tersedia */
+  flex: 1;
   min-width: 0;
   padding: 20px;
 }
 
-/* Sidebar / Playlist */
+/* Sidebar section yang menampung playlist dan jadwal */
+.sidebar-section {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Playlist */
 .playlist {
-  flex: 0 0 300px; /* Sidebar memiliki lebar tetap */
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 20px;
+  width: 100%;
+}
+
+/* Schedule */
+.schedule {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.schedule-item {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.schedule-time {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.schedule-info h3 {
+  margin-bottom: 5px;
 }
 
 /* Navbar tetap menggunakan Flexbox */
@@ -96,13 +127,6 @@ h1 {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-}
-
-#songImage {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  margin-bottom: 20px;
 }
 
 .song-info {
@@ -177,8 +201,8 @@ h1 {
     align-items: center;
   }
 
-  .playlist {
-    flex: 1; /* Mengisi seluruh lebar */
+  .sidebar-section {
+    flex: 1;
     width: 100%;
   }
 
